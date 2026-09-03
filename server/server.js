@@ -38,6 +38,19 @@ dotenv.config({ path: path.join(__dirname, '.env') });
 const app = express();
 const server = http.createServer(app);
 
+// Middlewares
+app.use(cors());
+app.use(express.json());
+
+// Environment & Production flags
+const isProduction = process.env.NODE_ENV === 'production';
+
+// Validate required environment variables in production
+if (isProduction && !process.env.JWT_SECRET) {
+  console.error('Fatal: JWT_SECRET environment variable is missing in production mode.');
+  process.exit(1);
+}
+
 // Socket.IO Setup
 const io = new Server(server, {
   cors: {
@@ -48,16 +61,6 @@ const io = new Server(server, {
 
 // Expose io instance globally so controllers can broadcast events
 global.io = io;
-
-// Middlewares
-app.use(cors());
-app.use(express.json());
-
-// Validate required environment variables in production
-if (isProduction && !process.env.JWT_SECRET) {
-  console.error('Fatal: JWT_SECRET environment variable is missing in production mode.');
-  process.exit(1);
-}
 
 // Database Connection
 const hasRemoteMongo = Boolean(process.env.MONGODB_URI && !process.env.MONGODB_URI.includes('127.0.0.1'));
