@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <rect width="512" height="512" rx="120" fill="url(#grad)" />
+  <defs>
+    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#15803d" />
+      <stop offset="100%" stop-color="#10b981" />
+    </linearGradient>
+  </defs>
+  <!-- Wheat Graphic -->
+  <g fill="#fef08a" stroke="#d97706" stroke-width="6" stroke-linecap="round">
+    <path d="M256 120 L256 420" stroke="#fef08a" stroke-width="12" />
+    <!-- Grains -->
+    <ellipse cx="256" cy="110" rx="18" ry="36" />
+    <ellipse cx="220" cy="160" rx="18" ry="34" transform="rotate(-35 220 160)" />
+    <ellipse cx="292" cy="160" rx="18" ry="34" transform="rotate(35 292 160)" />
+    <ellipse cx="205" cy="215" rx="20" ry="36" transform="rotate(-45 205 215)" />
+    <ellipse cx="307" cy="215" rx="20" ry="36" transform="rotate(45 307 215)" />
+    <ellipse cx="200" cy="270" rx="20" ry="36" transform="rotate(-45 200 270)" />
+    <ellipse cx="312" cy="270" rx="20" ry="36" transform="rotate(45 312 270)" />
+    <ellipse cx="205" cy="325" rx="19" ry="34" transform="rotate(-40 205 325)" />
+    <ellipse cx="307" cy="325" rx="19" ry="34" transform="rotate(40 307 325)" />
+    <ellipse cx="220" cy="375" rx="17" ry="30" transform="rotate(-30 220 375)" />
+    <ellipse cx="292" cy="375" rx="17" ry="30" transform="rotate(30 292 375)" />
+  </g>
+</svg>
