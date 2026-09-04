@@ -2,7 +2,7 @@
   "name": "KisanQueue - Farmer",
   "short_name": "KisanQueue",
   "description": "KisanQueue - Smart Farmer Procurement & Queue Management Portal",
-  "start_url": "/farmer",
+  "start_url": "/login",
   "scope": "/",
   "display": "standalone",
   "orientation": "portrait-primary",

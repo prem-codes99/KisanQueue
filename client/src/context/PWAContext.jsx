@@ -8,7 +8,14 @@ export const PWAProvider = ({ children }) => {
   const { t } = useLanguage();
   const [deferredPrompt, setDeferredPrompt] = useState(null);
   const [isInstallable, setIsInstallable] = useState(false);
-  const [isInstalled, setIsInstalled] = useState(false);
+  const [isInstalled, setIsInstalled] = useState(() => {
+    if (typeof window === 'undefined') return false;
+    return (
+      window.matchMedia('(display-mode: standalone)').matches ||
+      window.navigator.standalone === true ||
+      document.referrer.includes('android-app://')
+    );
+  });
   const [showInstructionsModal, setShowInstructionsModal] = useState(false);
 
   useEffect(() => {

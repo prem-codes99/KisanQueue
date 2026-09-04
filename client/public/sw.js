@@ -3,6 +3,7 @@ const CACHE_NAME = 'kisanqueue-farmer-v1';
 // Essential static app shell assets
 const APP_SHELL_ASSETS = [
   '/',
+  '/login',
   '/farmer',
   '/index.html',
   '/manifest.webmanifest',

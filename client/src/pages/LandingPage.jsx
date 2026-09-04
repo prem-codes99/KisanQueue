@@ -1,12 +1,18 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext.jsx';
 import { useLanguage } from '../context/LanguageContext.jsx';
+import { usePWA } from '../context/PWAContext.jsx';
 import { ArrowRight, Clock, ShieldCheck, Milestone, ChevronRight } from 'lucide-react';
 
 const LandingPage = () => {
   const { user } = useAuth();
   const { t } = useLanguage();
+  const { isInstalled } = usePWA();
+
+  // If launched/opened in Farmer PWA standalone mode, do not render Landing Page
+  if (isInstalled) {
+    return <Navigate to={user?.role === 'farmer' ? '/farmer' : '/login'} replace />;
+  }
 
   return (
     <div className="bg-gradient-to-b from-[#f4fbf4] via-white to-[#f8faf7]">
