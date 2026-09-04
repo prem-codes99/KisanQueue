@@ -65,28 +65,28 @@ const Register = () => {
   };
 
   return (
-    <div className="min-h-[calc(100vh-4rem)] flex items-center justify-center bg-gray-50/50 py-10 px-4 sm:px-6 lg:px-8 text-left">
-      <div className="max-w-xl w-full space-y-6 bg-white p-6 sm:p-8 rounded-2xl border border-gray-200/80 shadow-xs">
+    <div className="min-h-[calc(100vh-4rem)] flex items-center justify-center bg-gray-50/50 dark:bg-gray-950/50 py-10 px-4 sm:px-6 lg:px-8 text-left transition-colors duration-150">
+      <div className="max-w-xl w-full space-y-6 bg-white dark:bg-gray-900 p-6 sm:p-8 rounded-2xl border border-gray-200/80 dark:border-gray-800 shadow-xs transition-colors duration-150">
         <div className="text-center">
           <span className="text-3xl block">🚜</span>
-          <h2 className="mt-2 text-xl sm:text-2xl font-bold text-gray-900">
+          <h2 className="mt-2 text-xl sm:text-2xl font-bold text-gray-900 dark:text-gray-100">
             {t('registerTitle')}
           </h2>
-          <p className="mt-0.5 text-xs text-gray-500">
+          <p className="mt-0.5 text-xs text-gray-500 dark:text-gray-400">
             {t('registerSubtitle')}
           </p>
         </div>
 
         {error && (
-          <div className="bg-red-50 border border-red-200 p-3 rounded-xl flex items-start space-x-2">
-            <AlertCircle className="h-4 w-4 text-red-500 shrink-0 mt-0.5" />
-            <p className="text-xs text-red-700 font-medium">{error}</p>
+          <div className="bg-red-50 dark:bg-red-950/50 border border-red-200 dark:border-red-800 p-3 rounded-xl flex items-start space-x-2">
+            <AlertCircle className="h-4 w-4 text-red-500 dark:text-red-400 shrink-0 mt-0.5" />
+            <p className="text-xs text-red-700 dark:text-red-300 font-medium">{error}</p>
           </div>
         )}
 
         <form className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 sm:gap-4" onSubmit={handleSubmit}>
           <div>
-            <label className="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1">
+            <label className="block text-xs font-bold text-gray-700 dark:text-gray-300 uppercase tracking-wider mb-1">
               {t('name')} *
             </label>
             <input
@@ -96,12 +96,12 @@ const Register = () => {
               value={formData.name}
               onChange={handleChange}
               placeholder="e.g. Ramesh Patil"
-              className="w-full px-3.5 py-2 bg-gray-50 border border-gray-300 rounded-lg text-sm text-gray-800 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:bg-white"
+              className="w-full px-3.5 py-2 bg-gray-50 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg text-sm text-gray-800 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:bg-white dark:focus:bg-gray-800 transition"
             />
           </div>
 
           <div>
-            <label className="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1">
+            <label className="block text-xs font-bold text-gray-700 dark:text-gray-300 uppercase tracking-wider mb-1">
               {t('phone')} *
             </label>
             <input
@@ -111,12 +111,12 @@ const Register = () => {
               value={formData.mobileNumber}
               onChange={handleChange}
               placeholder="10-digit number"
-              className="w-full px-3.5 py-2 bg-gray-50 border border-gray-300 rounded-lg text-sm text-gray-800 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:bg-white"
+              className="w-full px-3.5 py-2 bg-gray-50 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg text-sm text-gray-800 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:bg-white dark:focus:bg-gray-800 transition"
             />
           </div>
 
           <div>
-            <label className="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1">
+            <label className="block text-xs font-bold text-gray-700 dark:text-gray-300 uppercase tracking-wider mb-1">
               {t('farmerId')} *
             </label>
             <input
@@ -126,12 +126,12 @@ const Register = () => {
               value={formData.farmerId}
               onChange={handleChange}
               placeholder="e.g. F-PUNE-2026-8910"
-              className="w-full px-3.5 py-2 bg-gray-50 border border-gray-300 rounded-lg text-sm text-gray-800 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:bg-white"
+              className="w-full px-3.5 py-2 bg-gray-50 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg text-sm text-gray-800 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:bg-white dark:focus:bg-gray-800 transition font-mono"
             />
           </div>
 
           <div>
-            <label className="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1">
+            <label className="block text-xs font-bold text-gray-700 dark:text-gray-300 uppercase tracking-wider mb-1">
               {t('village')} *
             </label>
             <input
@@ -141,12 +141,12 @@ const Register = () => {
               value={formData.village}
               onChange={handleChange}
               placeholder="e.g. Manjari Budruk"
-              className="w-full px-3.5 py-2 bg-gray-50 border border-gray-300 rounded-lg text-sm text-gray-800 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:bg-white"
+              className="w-full px-3.5 py-2 bg-gray-50 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg text-sm text-gray-800 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:bg-white dark:focus:bg-gray-800 transition"
             />
           </div>
 
           <div>
-            <label className="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1">
+            <label className="block text-xs font-bold text-gray-700 dark:text-gray-300 uppercase tracking-wider mb-1">
               {t('district')} *
             </label>
             <input
@@ -156,12 +156,12 @@ const Register = () => {
               value={formData.district}
               onChange={handleChange}
               placeholder="e.g. Pune"
-              className="w-full px-3.5 py-2 bg-gray-50 border border-gray-300 rounded-lg text-sm text-gray-800 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:bg-white"
+              className="w-full px-3.5 py-2 bg-gray-50 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg text-sm text-gray-800 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:bg-white dark:focus:bg-gray-800 transition"
             />
           </div>
 
           <div>
-            <label className="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1">
+            <label className="block text-xs font-bold text-gray-700 dark:text-gray-300 uppercase tracking-wider mb-1">
               {t('state')} *
             </label>
             <input
@@ -171,12 +171,12 @@ const Register = () => {
               value={formData.state}
               onChange={handleChange}
               placeholder="e.g. Maharashtra"
-              className="w-full px-3.5 py-2 bg-gray-50 border border-gray-300 rounded-lg text-sm text-gray-800 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:bg-white"
+              className="w-full px-3.5 py-2 bg-gray-50 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg text-sm text-gray-800 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:bg-white dark:focus:bg-gray-800 transition"
             />
           </div>
 
           <div>
-            <label className="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1">
+            <label className="block text-xs font-bold text-gray-700 dark:text-gray-300 uppercase tracking-wider mb-1">
               {t('password')} *
             </label>
             <input
@@ -186,22 +186,22 @@ const Register = () => {
               value={formData.password}
               onChange={handleChange}
               placeholder="Min 6 characters"
-              className="w-full px-3.5 py-2 bg-gray-50 border border-gray-300 rounded-lg text-sm text-gray-800 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:bg-white"
+              className="w-full px-3.5 py-2 bg-gray-50 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg text-sm text-gray-800 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:bg-white dark:focus:bg-gray-800 transition"
             />
           </div>
 
           <div>
-            <label className="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1">
+            <label className="block text-xs font-bold text-gray-700 dark:text-gray-300 uppercase tracking-wider mb-1">
               {t('preferredLanguage')}
             </label>
             <select
               name="preferredLanguage"
               value={formData.preferredLanguage}
               onChange={handleChange}
-              className="w-full px-3.5 py-2 bg-gray-50 border border-gray-300 rounded-lg text-sm text-gray-800 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:bg-white cursor-pointer"
+              className="w-full px-3.5 py-2 bg-gray-50 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg text-sm text-gray-800 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:bg-white dark:focus:bg-gray-800 cursor-pointer transition"
             >
               {(languageOptions || []).map((opt) => (
-                <option key={opt.code} value={opt.code}>
+                <option key={opt.code} value={opt.code} className="dark:bg-gray-800 dark:text-gray-100">
                   {opt.name} ({opt.nativeName})
                 </option>
               ))}
@@ -229,16 +229,16 @@ const Register = () => {
           </div>
         </form>
 
-        <div className="text-center pt-2 space-y-1.5 border-t border-gray-100">
-          <p className="text-xs text-gray-500">
+        <div className="text-center pt-2 space-y-1.5 border-t border-gray-100 dark:border-gray-800">
+          <p className="text-xs text-gray-500 dark:text-gray-400">
             {t('alreadyRegistered')}{' '}
-            <Link to="/login" className="font-bold text-emerald-700 hover:underline">
+            <Link to="/login" className="font-bold text-emerald-700 dark:text-emerald-400 hover:underline">
               {t('login')}
             </Link>
           </p>
-          <p className="text-3xs text-gray-500">
+          <p className="text-3xs text-gray-500 dark:text-gray-400">
             {t('areYouACentre')}{' '}
-            <Link to="/register-centre" className="font-bold text-blue-700 hover:underline">
+            <Link to="/register-centre" className="font-bold text-blue-700 dark:text-blue-400 hover:underline">
               {t('registerAsProcurementCentre')}
             </Link>
           </p>

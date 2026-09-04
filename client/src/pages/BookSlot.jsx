@@ -30,7 +30,7 @@ const BookSlot = () => {
   const [booking, setBooking] = useState(false);
   const [error, setError] = useState('');
 
-  // Fetch all centres on mount
+  // Fetch centres on mount, keeping only Kharadi Mandi and Hadapsar Mandi for Farmer booking
   useEffect(() => {
     const fetchCentres = async () => {
       try {
@@ -39,7 +39,10 @@ const BookSlot = () => {
         });
         const result = await response.json();
         if (result.success) {
-          setCentres(result.data);
+          const allowedCentres = (result.data || []).filter(c => 
+            c.name && (/kharadi/i.test(c.name) || /hadapsar/i.test(c.name))
+          );
+          setCentres(allowedCentres);
         }
       } catch (err) {
         console.error(err);
@@ -137,22 +140,22 @@ const BookSlot = () => {
 
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-6 text-left space-y-6">
-      <Link to="/farmer" className="inline-flex items-center text-xs font-semibold text-emerald-700 hover:underline">
+      <Link to="/farmer" className="inline-flex items-center text-xs font-semibold text-emerald-700 dark:text-emerald-400 hover:underline">
         <ArrowLeft className="mr-1.5 h-3.5 w-3.5" /> {t('back')} ({t('dashboard')})
       </Link>
 
-      <div className="bg-white rounded-2xl p-6 sm:p-8 border border-gray-200/80 shadow-xs space-y-6">
+      <div className="bg-white dark:bg-gray-900 rounded-2xl p-6 sm:p-8 border border-gray-200/80 dark:border-gray-800 shadow-xs space-y-6">
         <div>
-          <h2 className="text-xl sm:text-2xl font-bold text-gray-900">{t('bookSlotPageTitle')}</h2>
-          <p className="text-xs text-gray-500 mt-1">
+          <h2 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white">{t('bookSlotPageTitle')}</h2>
+          <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
             {t('bookSlotPageSubtitle')}
           </p>
         </div>
 
         {error && (
-          <div className="bg-red-50 border border-red-200 p-3.5 rounded-xl flex items-start space-x-2.5 text-left">
-            <AlertCircle className="h-4 w-4 text-red-500 shrink-0 mt-0.5" />
-            <p className="text-xs text-red-700 font-medium">{error}</p>
+          <div className="bg-red-50 dark:bg-red-950/50 border border-red-200 dark:border-red-800 p-3.5 rounded-xl flex items-start space-x-2.5 text-left">
+            <AlertCircle className="h-4 w-4 text-red-500 dark:text-red-400 shrink-0 mt-0.5" />
+            <p className="text-xs text-red-700 dark:text-red-300 font-medium">{error}</p>
           </div>
         )}
 
@@ -162,33 +165,38 @@ const BookSlot = () => {
             
             {/* Centre Selector */}
             <div>
-              <label className="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1.5">
+              <label className="block text-xs font-bold text-gray-700 dark:text-gray-300 uppercase tracking-wider mb-1.5">
                 {t('selectCentre')}
               </label>
               <select
                 required
                 value={selectedCentre}
                 onChange={(e) => setSelectedCentre(e.target.value)}
-                className="w-full px-3.5 py-2.5 bg-gray-50 border border-gray-300 rounded-lg text-sm text-gray-800 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:bg-white cursor-pointer"
+                className="w-full px-3.5 py-2.5 bg-gray-50 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg text-sm text-gray-800 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:bg-white dark:focus:bg-gray-800 cursor-pointer"
               >
                 <option value="">-- {t('selectCentre')} --</option>
-                {centres.map((c) => (
-                  <option key={c._id} value={c._id}>
-                    {c.name} ({c.district})
-                  </option>
-                ))}
+                {centres.map((c) => {
+                  const displayName = c.name.includes('Kharadi')
+                    ? 'Kharadi Mandi'
+                    : (c.name.includes('Hadapsar') ? 'Hadapsar Mandi' : c.name);
+                  return (
+                    <option key={c._id} value={c._id}>
+                      {displayName} ({c.district})
+                    </option>
+                  );
+                })}
               </select>
             </div>
 
             {/* Crop Selector */}
             <div>
-              <label className="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1.5">
+              <label className="block text-xs font-bold text-gray-700 dark:text-gray-300 uppercase tracking-wider mb-1.5">
                 {t('selectCrop')}
               </label>
               <select
                 value={selectedCrop}
                 onChange={(e) => setSelectedCrop(e.target.value)}
-                className="w-full px-3.5 py-2.5 bg-gray-50 border border-gray-300 rounded-lg text-sm text-gray-800 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:bg-white cursor-pointer"
+                className="w-full px-3.5 py-2.5 bg-gray-50 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg text-sm text-gray-800 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:bg-white dark:focus:bg-gray-800 cursor-pointer"
               >
                 <option value="Wheat">🌾 {t('cropWheat')}</option>
                 <option value="Paddy (Rice)">🌾 {t('cropPaddy')}</option>
@@ -200,7 +208,7 @@ const BookSlot = () => {
 
             {/* Quantity */}
             <div>
-              <label className="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1.5">
+              <label className="block text-xs font-bold text-gray-700 dark:text-gray-300 uppercase tracking-wider mb-1.5">
                 {t('enterQuantity')}
               </label>
               <input
@@ -211,13 +219,13 @@ const BookSlot = () => {
                 value={quantity}
                 onChange={(e) => setQuantity(e.target.value)}
                 placeholder={t('approxQuantityPlaceholder')}
-                className="w-full px-3.5 py-2.5 bg-gray-50 border border-gray-300 rounded-lg text-sm text-gray-800 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:bg-white"
+                className="w-full px-3.5 py-2.5 bg-gray-50 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg text-sm text-gray-800 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:bg-white dark:focus:bg-gray-800"
               />
             </div>
 
             {/* Date */}
             <div>
-              <label className="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1.5">
+              <label className="block text-xs font-bold text-gray-700 dark:text-gray-300 uppercase tracking-wider mb-1.5">
                 {t('selectDate')}
               </label>
               <input
@@ -225,7 +233,7 @@ const BookSlot = () => {
                 required
                 value={date}
                 onChange={(e) => setDate(e.target.value)}
-                className="w-full px-3.5 py-2.5 bg-gray-50 border border-gray-300 rounded-lg text-sm text-gray-800 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:bg-white"
+                className="w-full px-3.5 py-2.5 bg-gray-50 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg text-sm text-gray-800 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:bg-white dark:focus:bg-gray-800"
               />
             </div>
           </div>
@@ -240,16 +248,20 @@ const BookSlot = () => {
               />
 
               {centreCongestion === 'HIGH' && altCentreRecommendation && (
-                <div className="bg-amber-50 border border-amber-200 p-4 rounded-xl text-left space-y-2">
-                  <div className="flex items-center space-x-2 text-amber-900 font-bold text-xs">
-                    <AlertCircle className="h-4 w-4 text-amber-600" />
+                <div className="bg-amber-50 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-900/60 p-4 rounded-xl text-left space-y-2">
+                  <div className="flex items-center space-x-2 text-amber-900 dark:text-amber-300 font-bold text-xs">
+                    <AlertCircle className="h-4 w-4 text-amber-600 dark:text-amber-400" />
                     <span>{t('congestionWarning')}</span>
                   </div>
-                  <div className="bg-white p-3 rounded-lg border border-amber-200/60 flex items-center justify-between gap-3">
+                  <div className="bg-white dark:bg-gray-800 p-3 rounded-lg border border-amber-200/60 dark:border-gray-700 flex items-center justify-between gap-3">
                     <div>
-                      <span className="text-4xs uppercase font-bold text-emerald-700 block">{t('altCentreTitle')}</span>
-                      <h4 className="text-xs font-bold text-gray-800 mt-0.5">{altCentreRecommendation.name}</h4>
-                      <p className="text-4xs text-gray-500">{altCentreRecommendation.location}</p>
+                      <span className="text-4xs uppercase font-bold text-emerald-700 dark:text-emerald-400 block">{t('altCentreTitle')}</span>
+                      <h4 className="text-xs font-bold text-gray-800 dark:text-gray-100 mt-0.5">
+                        {altCentreRecommendation.name.includes('Kharadi')
+                          ? 'Kharadi Mandi'
+                          : (altCentreRecommendation.name.includes('Hadapsar') ? 'Hadapsar Mandi' : altCentreRecommendation.name)}
+                      </h4>
+                      <p className="text-4xs text-gray-500 dark:text-gray-400">{altCentreRecommendation.location}</p>
                     </div>
                     <button
                       type="button"
@@ -266,9 +278,9 @@ const BookSlot = () => {
 
           {/* Time Slot Selection Grid */}
           {selectedCentre && date && (
-            <div className="border-t border-gray-100 pt-5 space-y-3">
-              <h4 className="text-xs font-bold text-gray-700 uppercase tracking-wider flex items-center gap-1.5">
-                <Calendar className="h-3.5 w-3.5 text-emerald-600" /> {t('selectTimeSlot')}
+            <div className="border-t border-gray-100 dark:border-gray-800 pt-5 space-y-3">
+              <h4 className="text-xs font-bold text-gray-700 dark:text-gray-300 uppercase tracking-wider flex items-center gap-1.5">
+                <Calendar className="h-3.5 w-3.5 text-emerald-600 dark:text-emerald-400" /> {t('selectTimeSlot')}
               </h4>
 
               {loadingSlots ? (
@@ -292,10 +304,10 @@ const BookSlot = () => {
                           disabled={isFull}
                           onClick={() => setSelectedSlot(s._id)}
                           className={`p-3 rounded-xl border text-left flex flex-col justify-between transition focus:outline-none relative cursor-pointer ${
-                            isFull ? 'bg-gray-50 border-gray-200 text-gray-400 cursor-not-allowed opacity-50' :
-                            isSelected ? 'bg-emerald-50/80 border-2 border-emerald-600 ring-2 ring-emerald-100 shadow-xs' :
-                            isRecommended ? 'bg-emerald-50/30 border border-emerald-300 hover:border-emerald-500' :
-                            'bg-white border-gray-200/90 hover:border-gray-300 shadow-2xs'
+                            isFull ? 'bg-gray-50 dark:bg-gray-900/50 border-gray-200 dark:border-gray-800 text-gray-400 dark:text-gray-600 cursor-not-allowed opacity-50' :
+                            isSelected ? 'bg-emerald-50/80 dark:bg-emerald-950/50 border-2 border-emerald-600 ring-2 ring-emerald-100 dark:ring-emerald-900/40 shadow-xs' :
+                            isRecommended ? 'bg-emerald-50/30 dark:bg-emerald-950/30 border border-emerald-300 dark:border-emerald-800 hover:border-emerald-500' :
+                            'bg-white dark:bg-gray-800 border-gray-200/90 dark:border-gray-700 hover:border-gray-300 dark:hover:border-gray-600 shadow-2xs'
                           }`}
                         >
                           {/* Recommended Badge */}
@@ -306,23 +318,23 @@ const BookSlot = () => {
                           )}
 
                           <div>
-                            <span className={`text-xs sm:text-sm font-bold block ${isSelected ? 'text-emerald-950' : 'text-gray-900'}`}>
+                            <span className={`text-xs sm:text-sm font-bold block ${isSelected ? 'text-emerald-950 dark:text-emerald-200' : 'text-gray-900 dark:text-gray-100'}`}>
                               {s.startTime} - {s.endTime}
                             </span>
-                            <div className="flex items-center space-x-1 text-3xs font-medium text-gray-500 mt-0.5">
+                            <div className="flex items-center space-x-1 text-3xs font-medium text-gray-500 dark:text-gray-400 mt-0.5">
                               <Clock className="h-3 w-3 text-gray-400" />
                               <span>~{predictedWait} {t('minutes')}</span>
                             </div>
                           </div>
 
-                          <div className="flex items-center justify-between mt-2.5 pt-2 border-t border-gray-100 text-4xs">
-                            <span className="text-gray-500 font-medium">
+                          <div className="flex items-center justify-between mt-2.5 pt-2 border-t border-gray-100 dark:border-gray-700 text-4xs">
+                            <span className="text-gray-500 dark:text-gray-400 font-medium">
                               {s.capacity - s.bookedCount} / {s.capacity} left
                             </span>
                             <span className={`font-bold px-2 py-0.5 rounded-full ${
-                              congestion === 'LOW' ? 'bg-emerald-100 text-emerald-800' :
-                              congestion === 'MODERATE' ? 'bg-amber-100 text-amber-900' : 
-                              'bg-red-100 text-red-800'
+                              congestion === 'LOW' ? 'bg-emerald-100 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300' :
+                              congestion === 'MODERATE' ? 'bg-amber-100 dark:bg-amber-950/60 text-amber-900 dark:text-amber-300' : 
+                              'bg-red-100 dark:bg-red-950/60 text-red-800 dark:text-red-300'
                             }`}>
                               {congestion === 'LOW' ? `🟢 ${t('congestionLow')}` :
                                congestion === 'MODERATE' ? `🟡 ${t('congestionModerate')}` : 
@@ -339,12 +351,12 @@ const BookSlot = () => {
                     const selObj = slots.find(s => s._id === selectedSlot);
                     if (selObj && (selObj.congestion === 'HIGH' || selObj.crowdLevel === 'HIGH')) {
                       return (
-                        <div className="bg-amber-50 border border-amber-200 p-3.5 rounded-xl flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 text-left mt-3">
+                        <div className="bg-amber-50 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-900/60 p-3.5 rounded-xl flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 text-left mt-3">
                           <div className="flex items-start space-x-2">
-                            <AlertTriangle className="h-4 w-4 text-amber-600 shrink-0 mt-0.5" />
+                            <AlertTriangle className="h-4 w-4 text-amber-600 dark:text-amber-400 shrink-0 mt-0.5" />
                             <div>
-                              <h5 className="text-xs font-bold text-amber-950">{t('highCongestionWarning')}</h5>
-                              <p className="text-3xs text-amber-900 mt-0.5 leading-relaxed">
+                              <h5 className="text-xs font-bold text-amber-950 dark:text-amber-200">{t('highCongestionWarning')}</h5>
+                              <p className="text-3xs text-amber-900 dark:text-amber-300 mt-0.5 leading-relaxed">
                                 {t('suggestedAlternativePrefix')} <b>{recommendedSlot?.startTime} - {recommendedSlot?.endTime} (~{recommendedSlot?.predictedWaitTime || 12} {t('minutes')})</b> {t('fasterTurnaroundTip')}.
                               </p>
                             </div>
@@ -369,7 +381,7 @@ const BookSlot = () => {
           )}
 
           {/* Book Slot Submit Button */}
-          <div className="pt-4 border-t border-gray-100 flex justify-end">
+          <div className="pt-4 border-t border-gray-100 dark:border-gray-800 flex justify-end">
             <button
               type="submit"
               disabled={booking || !selectedSlot}

@@ -59,24 +59,24 @@ const DailyTrendCustomTooltip = ({ active, payload, label }) => {
     const item = payload[0];
     const data = item.payload || {};
     return (
-      <div className="bg-white/95 backdrop-blur-md p-3.5 rounded-2xl shadow-xl border border-gray-100 text-left min-w-[175px] ring-1 ring-black/5">
-        <div className="flex items-center space-x-1.5 mb-2 pb-2 border-b border-gray-100">
-          <span className="inline-block w-2.5 h-2.5 rounded-full bg-emerald-500 ring-2 ring-emerald-100"></span>
-          <p className="text-2xs font-extrabold text-gray-800">
+      <div className="bg-white/95 dark:bg-gray-900/95 backdrop-blur-md p-3.5 rounded-2xl shadow-xl border border-gray-100 dark:border-gray-800 text-left min-w-[175px] ring-1 ring-black/5">
+        <div className="flex items-center space-x-1.5 mb-2 pb-2 border-b border-gray-100 dark:border-gray-800">
+          <span className="inline-block w-2.5 h-2.5 rounded-full bg-emerald-500 ring-2 ring-emerald-100 dark:ring-emerald-900/50"></span>
+          <p className="text-2xs font-extrabold text-gray-800 dark:text-gray-100">
             {formatFullDate(data.date || label)}
           </p>
         </div>
         <div className="space-y-1.5">
           <div className="flex justify-between items-center gap-3">
-            <span className="text-3xs font-semibold text-gray-500">Procured Volume:</span>
-            <span className="text-xs font-black text-emerald-600">
+            <span className="text-3xs font-semibold text-gray-500 dark:text-gray-400">Procured Volume:</span>
+            <span className="text-xs font-black text-emerald-600 dark:text-emerald-400">
               {data.volume != null ? Number(data.volume).toLocaleString() : 0} Qtl
             </span>
           </div>
           {data.earnings != null && Number(data.earnings) > 0 && (
-            <div className="flex justify-between items-center gap-3 pt-1.5 border-t border-gray-100/70">
-              <span className="text-3xs font-semibold text-gray-500">Payout Value:</span>
-              <span className="text-2xs font-bold text-gray-800">
+            <div className="flex justify-between items-center gap-3 pt-1.5 border-t border-gray-100/70 dark:border-gray-800">
+              <span className="text-3xs font-semibold text-gray-500 dark:text-gray-400">Payout Value:</span>
+              <span className="text-2xs font-bold text-gray-800 dark:text-gray-200">
                 ₹{Number(data.earnings).toLocaleString('en-IN')}
               </span>
             </div>
@@ -352,11 +352,11 @@ const AdminDashboard = () => {
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 text-left space-y-6">
       
       {/* Title Header */}
-      <div className="bg-white rounded-2xl p-5 sm:p-6 border border-gray-200/80 shadow-xs flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+      <div className="bg-white dark:bg-gray-900 rounded-2xl p-5 sm:p-6 border border-gray-200/80 dark:border-gray-800 shadow-xs flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>
-          <span className="text-4xs uppercase font-bold text-emerald-700 tracking-wider block">{t('adminControlTitle')}</span>
-          <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mt-0.5">{t('adminControlTitle')}</h2>
-          <p className="text-xs text-gray-500 mt-0.5">{t('adminControlSubtitle')}</p>
+          <span className="text-4xs uppercase font-bold text-emerald-700 dark:text-emerald-400 tracking-wider block">{t('adminControlTitle')}</span>
+          <h2 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mt-0.5">{t('adminControlTitle')}</h2>
+          <p className="text-xs text-gray-500 dark:text-gray-400 mt-0.5">{t('adminControlSubtitle')}</p>
         </div>
         <button
           onClick={() => setShowAddCentreModal(true)}
@@ -368,72 +368,72 @@ const AdminDashboard = () => {
 
       {/* Summary KPI Cards */}
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3.5">
-        <div className="bg-white p-3.5 sm:p-4 rounded-xl border border-gray-200/80 shadow-xs">
+        <div className="bg-white dark:bg-gray-900 p-3.5 sm:p-4 rounded-xl border border-gray-200/80 dark:border-gray-800 shadow-xs">
           <div className="flex justify-between items-start text-gray-400">
-            <span className="text-4xs font-bold uppercase tracking-wider text-gray-500">{t('totalFarmersKpi')}</span>
-            <Users className="h-4 w-4 text-emerald-600" />
+            <span className="text-4xs font-bold uppercase tracking-wider text-gray-500 dark:text-gray-400">{t('totalFarmersKpi')}</span>
+            <Users className="h-4 w-4 text-emerald-600 dark:text-emerald-400" />
           </div>
-          <span className="text-lg sm:text-xl font-bold text-gray-900 mt-1.5 block">{summary.totalFarmers}</span>
-          <span className="text-4xs text-gray-400 mt-0.5 block">{t('farmer')}</span>
+          <span className="text-lg sm:text-xl font-bold text-gray-900 dark:text-white mt-1.5 block">{summary.totalFarmers}</span>
+          <span className="text-4xs text-gray-400 dark:text-gray-500 mt-0.5 block">{t('farmer')}</span>
         </div>
 
-        <div className="bg-white p-3.5 sm:p-4 rounded-xl border border-gray-200/80 shadow-xs">
+        <div className="bg-white dark:bg-gray-900 p-3.5 sm:p-4 rounded-xl border border-gray-200/80 dark:border-gray-800 shadow-xs">
           <div className="flex justify-between items-start text-gray-400">
-            <span className="text-4xs font-bold uppercase tracking-wider text-gray-500">{t('activeMandisKpi')}</span>
-            <Building className="h-4 w-4 text-blue-600" />
+            <span className="text-4xs font-bold uppercase tracking-wider text-gray-500 dark:text-gray-400">{t('activeMandisKpi')}</span>
+            <Building className="h-4 w-4 text-blue-600 dark:text-blue-400" />
           </div>
-          <span className="text-lg sm:text-xl font-bold text-gray-900 mt-1.5 block">{summary.totalCentres}</span>
-          <span className="text-4xs text-gray-400 mt-0.5 block">{t('thCentre')}</span>
+          <span className="text-lg sm:text-xl font-bold text-gray-900 dark:text-white mt-1.5 block">{summary.totalCentres}</span>
+          <span className="text-4xs text-gray-400 dark:text-gray-500 mt-0.5 block">{t('thCentre')}</span>
         </div>
 
-        <div className="bg-white p-3.5 sm:p-4 rounded-xl border border-gray-200/80 shadow-xs">
+        <div className="bg-white dark:bg-gray-900 p-3.5 sm:p-4 rounded-xl border border-gray-200/80 dark:border-gray-800 shadow-xs">
           <div className="flex justify-between items-start text-gray-400">
-            <span className="text-4xs font-bold uppercase tracking-wider text-gray-500">{t('todayBookingsKpi')}</span>
-            <Ticket className="h-4 w-4 text-amber-500" />
+            <span className="text-4xs font-bold uppercase tracking-wider text-gray-500 dark:text-gray-400">{t('todayBookingsKpi')}</span>
+            <Ticket className="h-4 w-4 text-amber-500 dark:text-amber-400" />
           </div>
-          <span className="text-lg sm:text-xl font-bold text-gray-900 mt-1.5 block">{summary.todayBookings}</span>
-          <span className="text-4xs text-gray-400 mt-0.5 block">{t('BOOKED')}</span>
+          <span className="text-lg sm:text-xl font-bold text-gray-900 dark:text-white mt-1.5 block">{summary.todayBookings}</span>
+          <span className="text-4xs text-gray-400 dark:text-gray-500 mt-0.5 block">{t('BOOKED')}</span>
         </div>
 
-        <div className="bg-white p-3.5 sm:p-4 rounded-xl border border-gray-200/80 shadow-xs">
+        <div className="bg-white dark:bg-gray-900 p-3.5 sm:p-4 rounded-xl border border-gray-200/80 dark:border-gray-800 shadow-xs">
           <div className="flex justify-between items-start text-gray-400">
-            <span className="text-4xs font-bold uppercase tracking-wider text-gray-500">{t('activeQueuesKpi')}</span>
-            <Activity className="h-4 w-4 text-orange-500" />
+            <span className="text-4xs font-bold uppercase tracking-wider text-gray-500 dark:text-gray-400">{t('activeQueuesKpi')}</span>
+            <Activity className="h-4 w-4 text-orange-500 dark:text-orange-400" />
           </div>
-          <span className="text-lg sm:text-xl font-bold text-gray-900 mt-1.5 block">{summary.activeQueues}</span>
-          <span className="text-4xs text-gray-400 mt-0.5 block">{t('IN_QUEUE')}</span>
+          <span className="text-lg sm:text-xl font-bold text-gray-900 dark:text-white mt-1.5 block">{summary.activeQueues}</span>
+          <span className="text-4xs text-gray-400 dark:text-gray-500 mt-0.5 block">{t('IN_QUEUE')}</span>
         </div>
 
-        <div className="bg-white p-3.5 sm:p-4 rounded-xl border border-gray-200/80 shadow-xs">
+        <div className="bg-white dark:bg-gray-900 p-3.5 sm:p-4 rounded-xl border border-gray-200/80 dark:border-gray-800 shadow-xs">
           <div className="flex justify-between items-start text-gray-400">
-            <span className="text-4xs font-bold uppercase tracking-wider text-gray-500">{t('completedProcurementsKpi')}</span>
-            <CheckSquare className="h-4 w-4 text-purple-600" />
+            <span className="text-4xs font-bold uppercase tracking-wider text-gray-500 dark:text-gray-400">{t('completedProcurementsKpi')}</span>
+            <CheckSquare className="h-4 w-4 text-purple-600 dark:text-purple-400" />
           </div>
-          <span className="text-lg sm:text-xl font-bold text-gray-900 mt-1.5 block">{summary.completedProcurements}</span>
-          <span className="text-4xs text-gray-400 mt-0.5 block">{t('COMPLETED')}</span>
+          <span className="text-lg sm:text-xl font-bold text-gray-900 dark:text-white mt-1.5 block">{summary.completedProcurements}</span>
+          <span className="text-4xs text-gray-400 dark:text-gray-500 mt-0.5 block">{t('COMPLETED')}</span>
         </div>
 
-        <div className="bg-white p-3.5 sm:p-4 rounded-xl border border-gray-200/80 shadow-xs">
+        <div className="bg-white dark:bg-gray-900 p-3.5 sm:p-4 rounded-xl border border-gray-200/80 dark:border-gray-800 shadow-xs">
           <div className="flex justify-between items-start text-gray-400">
-            <span className="text-4xs font-bold uppercase tracking-wider text-gray-500">{t('pendingPayoutsKpi')}</span>
-            <IndianRupee className="h-4 w-4 text-red-500" />
+            <span className="text-4xs font-bold uppercase tracking-wider text-gray-500 dark:text-gray-400">{t('pendingPayoutsKpi')}</span>
+            <IndianRupee className="h-4 w-4 text-red-500 dark:text-red-400" />
           </div>
-          <span className="text-lg sm:text-xl font-bold text-red-600 mt-1.5 block">₹{Math.round(summary.pendingPaymentsAmount / 1000)}k</span>
-          <span className="text-4xs text-gray-400 mt-0.5 block">{summary.pendingPaymentsCount} {t('PENDING')}</span>
+          <span className="text-lg sm:text-xl font-bold text-red-600 dark:text-red-400 mt-1.5 block">₹{Math.round(summary.pendingPaymentsAmount / 1000)}k</span>
+          <span className="text-4xs text-gray-400 dark:text-gray-500 mt-0.5 block">{summary.pendingPaymentsCount} {t('PENDING')}</span>
         </div>
       </div>
 
       {/* FEATURE 2: PROCUREMENT CENTRE BOTTLENECK MONITOR */}
-      <div className="bg-white rounded-2xl p-5 sm:p-6 border border-gray-200/80 shadow-xs space-y-4">
+      <div className="bg-white dark:bg-gray-900 rounded-2xl p-5 sm:p-6 border border-gray-200/80 dark:border-gray-800 shadow-xs space-y-4">
         <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-3">
           <div>
             <div className="flex items-center space-x-2">
-              <span className="p-1.5 bg-red-100 text-red-700 rounded-lg">
+              <span className="p-1.5 bg-red-100 dark:bg-red-950/60 text-red-700 dark:text-red-300 rounded-lg">
                 <ShieldAlert className="h-4 w-4" />
               </span>
-              <h3 className="text-base sm:text-lg font-bold text-gray-900">{t('bottleneckMonitorTitle')}</h3>
+              <h3 className="text-base sm:text-lg font-bold text-gray-900 dark:text-white">{t('bottleneckMonitorTitle')}</h3>
             </div>
-            <p className="text-3xs text-gray-500 mt-0.5">{t('bottleneckMonitorSubtitle')}</p>
+            <p className="text-3xs text-gray-500 dark:text-gray-400 mt-0.5">{t('bottleneckMonitorSubtitle')}</p>
           </div>
 
           {/* Sort and Filters */}
@@ -446,7 +446,7 @@ const AdminDashboard = () => {
                 placeholder={t('searchCentresPlaceholder')}
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-7 pr-3 py-1.5 rounded-lg border border-gray-300 text-xs focus:outline-none focus:ring-1 focus:ring-emerald-500"
+                className="w-full pl-7 pr-3 py-1.5 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 text-xs focus:outline-none focus:ring-1 focus:ring-emerald-500"
               />
             </div>
 
@@ -455,7 +455,7 @@ const AdminDashboard = () => {
               <select
                 value={districtFilter}
                 onChange={(e) => setDistrictFilter(e.target.value)}
-                className="px-2.5 py-1.5 rounded-lg border border-gray-300 text-xs font-medium text-gray-700 bg-white focus:outline-none"
+                className="px-2.5 py-1.5 rounded-lg border border-gray-300 dark:border-gray-700 text-xs font-medium text-gray-700 dark:text-gray-200 bg-white dark:bg-gray-800 focus:outline-none"
               >
                 <option value="ALL">{t('allDistricts')}</option>
                 {districtsList.map(d => (
@@ -465,11 +465,11 @@ const AdminDashboard = () => {
             )}
 
             {/* Sort Buttons */}
-            <div className="flex items-center space-x-1 bg-gray-100 p-0.5 rounded-lg text-4xs font-bold">
+            <div className="flex items-center space-x-1 bg-gray-100 dark:bg-gray-800 p-0.5 rounded-lg text-4xs font-bold">
               <button
                 onClick={() => setSortBy('queue')}
                 className={`px-2 py-1 rounded-md transition cursor-pointer ${
-                  sortBy === 'queue' ? 'bg-white text-gray-900 shadow-2xs' : 'text-gray-500 hover:text-gray-800'
+                  sortBy === 'queue' ? 'bg-white dark:bg-gray-700 text-gray-900 dark:text-white shadow-2xs' : 'text-gray-500 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200'
                 }`}
               >
                 {t('sortByHighestQueue')}
@@ -477,7 +477,7 @@ const AdminDashboard = () => {
               <button
                 onClick={() => setSortBy('wait')}
                 className={`px-2 py-1 rounded-md transition cursor-pointer ${
-                  sortBy === 'wait' ? 'bg-white text-gray-900 shadow-2xs' : 'text-gray-500 hover:text-gray-800'
+                  sortBy === 'wait' ? 'bg-white dark:bg-gray-700 text-gray-900 dark:text-white shadow-2xs' : 'text-gray-500 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200'
                 }`}
               >
                 {t('sortByHighestWait')}
@@ -485,7 +485,7 @@ const AdminDashboard = () => {
               <button
                 onClick={() => setSortBy('severity')}
                 className={`px-2 py-1 rounded-md transition cursor-pointer ${
-                  sortBy === 'severity' ? 'bg-white text-red-700 shadow-2xs' : 'text-gray-500 hover:text-gray-800'
+                  sortBy === 'severity' ? 'bg-white dark:bg-gray-700 text-red-700 dark:text-red-400 shadow-2xs' : 'text-gray-500 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200'
                 }`}
               >
                 {t('sortByCriticalBottleneck')}
@@ -493,7 +493,7 @@ const AdminDashboard = () => {
               <button
                 onClick={() => setSortBy('throughput')}
                 className={`px-2 py-1 rounded-md transition cursor-pointer ${
-                  sortBy === 'throughput' ? 'bg-white text-gray-900 shadow-2xs' : 'text-gray-500 hover:text-gray-800'
+                  sortBy === 'throughput' ? 'bg-white dark:bg-gray-700 text-gray-900 dark:text-white shadow-2xs' : 'text-gray-500 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200'
                 }`}
               >
                 {t('sortByLowestThroughput')}
@@ -504,19 +504,19 @@ const AdminDashboard = () => {
 
         {/* Bottleneck Monitor Table */}
         {bottlenecksLoading ? (
-          <div className="py-8 text-center text-xs text-gray-400">
+          <div className="py-8 text-center text-xs text-gray-400 dark:text-gray-500">
             <span className="animate-spin inline-block h-5 w-5 border-2 border-emerald-600 border-t-transparent rounded-full mb-2"></span>
             <p>Analyzing procurement workflow bottlenecks...</p>
           </div>
         ) : filteredBottlenecks.length === 0 ? (
-          <div className="p-6 text-center text-xs text-gray-400 bg-gray-50 rounded-xl border border-gray-100">
+          <div className="p-6 text-center text-xs text-gray-400 dark:text-gray-500 bg-gray-50 dark:bg-gray-800/50 rounded-xl border border-gray-100 dark:border-gray-800">
             No procurement centres match the selected filter.
           </div>
         ) : (
-          <div className="overflow-x-auto border border-gray-100 rounded-xl">
-            <table className="min-w-full divide-y divide-gray-200 text-left text-xs">
+          <div className="overflow-x-auto border border-gray-100 dark:border-gray-800 rounded-xl">
+            <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700 text-left text-xs">
               <thead>
-                <tr className="bg-gray-50 text-gray-500 font-bold text-4xs uppercase tracking-wider">
+                <tr className="bg-gray-50 dark:bg-gray-800 text-gray-500 dark:text-gray-400 font-bold text-4xs uppercase tracking-wider">
                   <th className="py-2.5 px-3">{t('thCentre')}</th>
                   <th className="py-2.5 px-3">{t('thQueue')}</th>
                   <th className="py-2.5 px-3">{t('estWaitTime')}</th>
@@ -526,39 +526,39 @@ const AdminDashboard = () => {
                   <th className="py-2.5 px-3 text-right">{t('thAction')}</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-gray-100">
+              <tbody className="divide-y divide-gray-100 dark:divide-gray-800">
                 {filteredBottlenecks.map((centre) => (
                   <tr 
                     key={centre.centreId}
                     onClick={() => setSelectedBottleneckCentre(centre)}
-                    className="hover:bg-emerald-50/30 cursor-pointer transition"
+                    className="hover:bg-emerald-50/30 dark:hover:bg-emerald-950/20 cursor-pointer transition"
                   >
                     <td className="py-2.5 px-3">
-                      <div className="font-semibold text-gray-900">{centre.centreName}</div>
-                      <div className="text-4xs text-gray-400 font-mono">
+                      <div className="font-semibold text-gray-900 dark:text-white">{centre.centreName}</div>
+                      <div className="text-4xs text-gray-400 dark:text-gray-500 font-mono">
                         {centre.centreCode} • {centre.district}
                       </div>
                     </td>
 
-                    <td className="py-2.5 px-3 font-semibold text-gray-800">
-                      <span className="inline-flex items-center px-2 py-0.5 rounded bg-gray-100 font-bold text-xs">
+                    <td className="py-2.5 px-3 font-semibold text-gray-800 dark:text-gray-200">
+                      <span className="inline-flex items-center px-2 py-0.5 rounded bg-gray-100 dark:bg-gray-800 font-bold text-xs">
                         {centre.queueLength}
                       </span>
                     </td>
 
-                    <td className="py-2.5 px-3 font-medium text-gray-700">
+                    <td className="py-2.5 px-3 font-medium text-gray-700 dark:text-gray-300">
                       {centre.avgWaitTime} {t('minutes')}
                     </td>
 
-                    <td className="py-2.5 px-3 font-medium text-gray-800">
+                    <td className="py-2.5 px-3 font-medium text-gray-800 dark:text-gray-200">
                       {centre.throughputPerHour} / hr
                     </td>
 
-                    <td className="py-2.5 px-3 font-semibold text-gray-800">
+                    <td className="py-2.5 px-3 font-semibold text-gray-800 dark:text-gray-200">
                       {centre.severity === 'NORMAL' ? (
-                        <span className="text-gray-400 font-normal">{t('none')}</span>
+                        <span className="text-gray-400 dark:text-gray-500 font-normal">{t('none')}</span>
                       ) : (
-                        <span className="text-red-700 font-bold flex items-center gap-1">
+                        <span className="text-red-700 dark:text-red-400 font-bold flex items-center gap-1">
                           ⚠️ {t(centre.bottleneckStageKey, centre.bottleneckStage)}
                         </span>
                       )}
@@ -566,9 +566,9 @@ const AdminDashboard = () => {
 
                     <td className="py-2.5 px-3">
                       <span className={`px-2 py-0.5 rounded-full text-4xs font-bold uppercase inline-flex items-center gap-1 ${
-                        centre.severity === 'CRITICAL' ? 'bg-red-100 text-red-800' :
-                        centre.severity === 'MODERATE' ? 'bg-amber-100 text-amber-900' :
-                        'bg-emerald-100 text-emerald-800'
+                        centre.severity === 'CRITICAL' ? 'bg-red-100 dark:bg-red-950/60 text-red-800 dark:text-red-300' :
+                        centre.severity === 'MODERATE' ? 'bg-amber-100 dark:bg-amber-950/60 text-amber-900 dark:text-amber-300' :
+                        'bg-emerald-100 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300'
                       }`}>
                         {centre.severity === 'CRITICAL' && '🔴'}
                         {centre.severity === 'MODERATE' && '🟡'}
@@ -583,7 +583,7 @@ const AdminDashboard = () => {
                           e.stopPropagation();
                           setSelectedBottleneckCentre(centre);
                         }}
-                        className="inline-flex items-center gap-1 px-2.5 py-1 bg-emerald-50 hover:bg-emerald-100 text-emerald-800 border border-emerald-200 rounded-lg text-4xs font-bold transition cursor-pointer"
+                        className="inline-flex items-center gap-1 px-2.5 py-1 bg-emerald-50 dark:bg-emerald-950/60 hover:bg-emerald-100 dark:hover:bg-emerald-900/80 text-emerald-800 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800 rounded-lg text-4xs font-bold transition cursor-pointer"
                       >
                         <span>{t('inspectCentreAnalytics')}</span>
                         <ChevronRight className="h-3 w-3" />
@@ -598,33 +598,33 @@ const AdminDashboard = () => {
       </div>
 
       {/* FEATURE 1: PROCUREMENT CENTRE REQUESTS & APPROVAL WORKFLOW */}
-      <div className="bg-white rounded-2xl p-5 sm:p-6 border border-gray-200/80 shadow-xs space-y-4">
+      <div className="bg-white dark:bg-gray-900 rounded-2xl p-5 sm:p-6 border border-gray-200/80 dark:border-gray-800 shadow-xs space-y-4">
         <div className="flex justify-between items-center">
           <div>
             <div className="flex items-center space-x-2">
-              <span className="p-1.5 bg-blue-100 text-blue-700 rounded-lg">
+              <span className="p-1.5 bg-blue-100 dark:bg-blue-950/60 text-blue-700 dark:text-blue-300 rounded-lg">
                 <Building className="h-4 w-4" />
               </span>
-              <h3 className="text-base sm:text-lg font-bold text-gray-900">{t('centreRequestsTitle')}</h3>
+              <h3 className="text-base sm:text-lg font-bold text-gray-900 dark:text-white">{t('centreRequestsTitle')}</h3>
             </div>
-            <p className="text-3xs text-gray-500 mt-0.5">{t('centreRequestsSubtitle')}</p>
+            <p className="text-3xs text-gray-500 dark:text-gray-400 mt-0.5">{t('centreRequestsSubtitle')}</p>
           </div>
         </div>
 
         {requestsLoading ? (
-          <div className="py-6 text-center text-xs text-gray-400">
+          <div className="py-6 text-center text-xs text-gray-400 dark:text-gray-500">
             <span className="animate-spin inline-block h-5 w-5 border-2 border-blue-600 border-t-transparent rounded-full mb-1"></span>
             <p>Loading centre applications...</p>
           </div>
         ) : centreRequests.length === 0 ? (
-          <div className="p-6 text-center text-xs text-gray-400 bg-gray-50 rounded-xl border border-gray-100">
+          <div className="p-6 text-center text-xs text-gray-400 dark:text-gray-500 bg-gray-50 dark:bg-gray-800/50 rounded-xl border border-gray-100 dark:border-gray-800">
             {t('noPendingRequests')}
           </div>
         ) : (
-          <div className="overflow-x-auto border border-gray-100 rounded-xl">
-            <table className="min-w-full divide-y divide-gray-200 text-left text-xs">
+          <div className="overflow-x-auto border border-gray-100 dark:border-gray-800 rounded-xl">
+            <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700 text-left text-xs">
               <thead>
-                <tr className="bg-gray-50 text-gray-500 font-bold text-4xs uppercase tracking-wider">
+                <tr className="bg-gray-50 dark:bg-gray-800 text-gray-500 dark:text-gray-400 font-bold text-4xs uppercase tracking-wider">
                   <th className="py-2.5 px-3">{t('centreNameLabel')}</th>
                   <th className="py-2.5 px-3">{t('district')}</th>
                   <th className="py-2.5 px-3">{t('contactPersonName')}</th>
@@ -634,38 +634,38 @@ const AdminDashboard = () => {
                   <th className="py-2.5 px-3 text-right">{t('thAction')}</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-gray-100">
+              <tbody className="divide-y divide-gray-100 dark:divide-gray-800">
                 {centreRequests.map((req) => (
-                  <tr key={req._id} className="hover:bg-gray-50 font-medium">
+                  <tr key={req._id} className="hover:bg-gray-50 dark:hover:bg-gray-800/50 font-medium">
                     <td className="py-2.5 px-3">
-                      <div className="font-semibold text-gray-900">{req.name}</div>
-                      <div className="text-4xs text-gray-400 font-mono">
+                      <div className="font-semibold text-gray-900 dark:text-white">{req.name}</div>
+                      <div className="text-4xs text-gray-400 dark:text-gray-500 font-mono">
                         {req.centreCode || 'MANDI-REQ'}
                       </div>
                     </td>
 
-                    <td className="py-2.5 px-3 font-medium text-gray-700">
+                    <td className="py-2.5 px-3 font-medium text-gray-700 dark:text-gray-300">
                       {req.district}, {req.state || 'MH'}
                     </td>
 
-                    <td className="py-2.5 px-3 text-gray-700">
+                    <td className="py-2.5 px-3 text-gray-700 dark:text-gray-300">
                       <div className="font-semibold">{req.contactPerson || 'N/A'}</div>
-                      <div className="text-4xs text-gray-400">{req.contactNumber}</div>
+                      <div className="text-4xs text-gray-400 dark:text-gray-500">{req.contactNumber}</div>
                     </td>
 
-                    <td className="py-2.5 px-3 text-gray-600">
+                    <td className="py-2.5 px-3 text-gray-600 dark:text-gray-400">
                       {req.activeCounters || 2} {t('countersLabel')} / {req.capacity || 50} {t('dailyFarmerCapacity')}
                     </td>
 
-                    <td className="py-2.5 px-3 text-gray-500 text-3xs">
+                    <td className="py-2.5 px-3 text-gray-500 dark:text-gray-400 text-3xs">
                       {new Date(req.createdAt).toLocaleDateString()}
                     </td>
 
                     <td className="py-2.5 px-3">
                       <span className={`px-2 py-0.5 rounded-full text-4xs font-bold uppercase ${
-                        req.status === 'APPROVED' || req.status === 'active' ? 'bg-emerald-100 text-emerald-800' :
-                        req.status === 'REJECTED' ? 'bg-red-100 text-red-800' :
-                        'bg-amber-100 text-amber-900'
+                        req.status === 'APPROVED' || req.status === 'active' ? 'bg-emerald-100 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300' :
+                        req.status === 'REJECTED' ? 'bg-red-100 dark:bg-red-950/60 text-red-800 dark:text-red-300' :
+                        'bg-amber-100 dark:bg-amber-950/60 text-amber-900 dark:text-amber-300'
                       }`}>
                         {t(req.status)}
                       </span>
@@ -685,14 +685,14 @@ const AdminDashboard = () => {
                           <button
                             onClick={() => handleRejectCentre(req._id)}
                             disabled={actionLoadingId === req._id}
-                            className="inline-flex items-center gap-1 px-2.5 py-1 bg-white hover:bg-red-50 text-red-600 border border-red-300 rounded-lg text-4xs font-bold transition disabled:opacity-50 cursor-pointer"
+                            className="inline-flex items-center gap-1 px-2.5 py-1 bg-white dark:bg-gray-800 hover:bg-red-50 dark:hover:bg-red-950/40 text-red-600 dark:text-red-400 border border-red-300 dark:border-red-800 rounded-lg text-4xs font-bold transition disabled:opacity-50 cursor-pointer"
                           >
                             <X className="h-3 w-3" />
                             <span>{t('rejectCentreBtn')}</span>
                           </button>
                         </div>
                       ) : (
-                        <span className="text-4xs text-gray-400 font-medium">
+                        <span className="text-4xs text-gray-400 dark:text-gray-500 font-medium">
                           {req.status === 'APPROVED' || req.status === 'active' ? '✓ Active' : '✕ Rejected'}
                         </span>
                       )}
@@ -709,18 +709,18 @@ const AdminDashboard = () => {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         
         {/* Left Box: Daily Procurement Volume */}
-        <div className="lg:col-span-2 bg-white rounded-2xl p-5 sm:p-6 border border-gray-200/80 shadow-xs space-y-3">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-2 border-b border-gray-100">
+        <div className="lg:col-span-2 bg-white dark:bg-gray-900 rounded-2xl p-5 sm:p-6 border border-gray-200/80 dark:border-gray-800 shadow-xs space-y-3">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-2 border-b border-gray-100 dark:border-gray-800">
             <div>
               <div className="flex items-center space-x-2">
-                <h3 className="font-bold text-xs uppercase tracking-wider text-gray-800">{t('chartDailyTrendTitle')}</h3>
+                <h3 className="font-bold text-xs uppercase tracking-wider text-gray-800 dark:text-white">{t('chartDailyTrendTitle')}</h3>
                 {dataPointsCount >= 2 && (
                   <span className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-4xs font-bold border ${
                     isNeutralTrend 
-                      ? 'bg-gray-50 text-gray-600 border-gray-200' 
+                      ? 'bg-gray-50 dark:bg-gray-800 text-gray-600 dark:text-gray-300 border-gray-200 dark:border-gray-700' 
                       : isPositiveTrend 
-                        ? 'bg-emerald-50 text-emerald-700 border-emerald-200' 
-                        : 'bg-amber-50 text-amber-700 border-amber-200'
+                        ? 'bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-300 border-emerald-200 dark:border-emerald-800' 
+                        : 'bg-amber-50 dark:bg-amber-950/60 text-amber-700 dark:text-amber-300 border-amber-200 dark:border-amber-800'
                   }`}>
                     {isNeutralTrend ? (
                       <Minus className="h-3 w-3" />
@@ -733,25 +733,25 @@ const AdminDashboard = () => {
                   </span>
                 )}
                 {dataPointsCount === 1 && (
-                  <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-4xs font-bold bg-blue-50 text-blue-700 border border-blue-200">
+                  <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-4xs font-bold bg-blue-50 dark:bg-blue-950/60 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-800">
                     <span className="w-1.5 h-1.5 rounded-full bg-blue-500"></span>
                     1 day recorded
                   </span>
                 )}
               </div>
-              <p className="text-4xs text-gray-400 mt-0.5">{t('chartDailyTrendSubtitle')}</p>
+              <p className="text-4xs text-gray-400 dark:text-gray-500 mt-0.5">{t('chartDailyTrendSubtitle')}</p>
             </div>
 
             {/* Quick KPI stats derived directly from real returned data */}
             <div className="flex items-center gap-2 text-left">
-              <div className="bg-emerald-50/70 border border-emerald-100 px-2.5 py-1 rounded-lg">
-                <span className="text-4xs text-emerald-700 uppercase font-bold tracking-wider block">7-Day Total</span>
-                <span className="text-xs font-bold text-emerald-900">{totalVolume7Days.toLocaleString()} Qtl</span>
+              <div className="bg-emerald-50/70 dark:bg-emerald-950/40 border border-emerald-100 dark:border-emerald-900/60 px-2.5 py-1 rounded-lg">
+                <span className="text-4xs text-emerald-700 dark:text-emerald-400 uppercase font-bold tracking-wider block">7-Day Total</span>
+                <span className="text-xs font-bold text-emerald-900 dark:text-emerald-300">{totalVolume7Days.toLocaleString()} Qtl</span>
               </div>
               {totalPayout7Days > 0 && (
-                <div className="bg-gray-50 border border-gray-200 px-2.5 py-1 rounded-lg hidden sm:block">
-                  <span className="text-4xs text-gray-500 uppercase font-bold tracking-wider block">Payout</span>
-                  <span className="text-xs font-bold text-gray-800">₹{totalPayout7Days.toLocaleString('en-IN')}</span>
+                <div className="bg-gray-50 dark:bg-gray-800/80 border border-gray-200 dark:border-gray-700 px-2.5 py-1 rounded-lg hidden sm:block">
+                  <span className="text-4xs text-gray-500 dark:text-gray-400 uppercase font-bold tracking-wider block">Payout</span>
+                  <span className="text-xs font-bold text-gray-800 dark:text-gray-200">₹{totalPayout7Days.toLocaleString('en-IN')}</span>
                 </div>
               )}
             </div>
@@ -767,17 +767,17 @@ const AdminDashboard = () => {
                     <stop offset="95%" stopColor="#10b981" stopOpacity={0.0} />
                   </linearGradient>
                 </defs>
-                <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" vertical={false} />
+                <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" opacity={0.3} vertical={false} />
                 <XAxis 
                   dataKey="date" 
                   tickFormatter={formatChartDate}
-                  tick={{ fontSize: 10, fill: '#64748b', fontWeight: 500 }}
-                  axisLine={{ stroke: '#e2e8f0' }}
+                  tick={{ fontSize: 10, fill: '#94a3b8', fontWeight: 500 }}
+                  axisLine={{ stroke: '#94a3b8', opacity: 0.3 }}
                   tickLine={false}
                   dy={6}
                 />
                 <YAxis 
-                  tick={{ fontSize: 10, fill: '#64748b', fontWeight: 500 }}
+                  tick={{ fontSize: 10, fill: '#94a3b8', fontWeight: 500 }}
                   axisLine={false}
                   tickLine={false}
                   tickFormatter={(val) => `${val}`}
@@ -801,9 +801,9 @@ const AdminDashboard = () => {
         </div>
 
         {/* Right Box: Crop breakdown pie chart */}
-        <div className="lg:col-span-1 bg-white rounded-2xl p-5 sm:p-6 border border-gray-200/80 shadow-xs space-y-3">
-          <h3 className="font-bold text-xs uppercase tracking-wider text-gray-800">{t('chartCropBreakdownTitle')}</h3>
-          <p className="text-4xs text-gray-400">{t('chartCropBreakdownSubtitle')}</p>
+        <div className="lg:col-span-1 bg-white dark:bg-gray-900 rounded-2xl p-5 sm:p-6 border border-gray-200/80 dark:border-gray-800 shadow-xs space-y-3">
+          <h3 className="font-bold text-xs uppercase tracking-wider text-gray-800 dark:text-white">{t('chartCropBreakdownTitle')}</h3>
+          <p className="text-4xs text-gray-400 dark:text-gray-500">{t('chartCropBreakdownSubtitle')}</p>
           <div className="h-56 flex justify-center items-center relative">
             <ResponsiveContainer width="100%" height="100%">
               <PieChart>
@@ -821,7 +821,7 @@ const AdminDashboard = () => {
                     <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                   ))}
                 </Pie>
-                <Tooltip contentStyle={{ fontSize: 10, borderRadius: '8px' }} />
+                <Tooltip contentStyle={{ fontSize: 10, borderRadius: '8px', backgroundColor: '#1e293b', border: 'none', color: '#f8fafc' }} />
               </PieChart>
             </ResponsiveContainer>
           </div>
@@ -829,23 +829,23 @@ const AdminDashboard = () => {
             {cropProcurement.map((entry, index) => (
               <div key={entry.crop} className="flex items-center space-x-1.5">
                 <span className="h-2 w-2 rounded-full shrink-0" style={{ backgroundColor: COLORS[index % COLORS.length] }}></span>
-                <span className="text-gray-600 font-medium truncate">{entry.crop} ({entry.volume} {t('quintals')})</span>
+                <span className="text-gray-600 dark:text-gray-300 font-medium truncate">{entry.crop} ({entry.volume} {t('quintals')})</span>
               </div>
             ))}
           </div>
         </div>
 
         {/* Bottom Left: Centre comparison queues */}
-        <div className="lg:col-span-2 bg-white rounded-2xl p-5 sm:p-6 border border-gray-200/80 shadow-xs space-y-3">
-          <h3 className="font-bold text-xs uppercase tracking-wider text-gray-800">{t('chartMandiCongestionTitle')}</h3>
-          <p className="text-4xs text-gray-400">{t('chartMandiCongestionSubtitle')}</p>
+        <div className="lg:col-span-2 bg-white dark:bg-gray-900 rounded-2xl p-5 sm:p-6 border border-gray-200/80 dark:border-gray-800 shadow-xs space-y-3">
+          <h3 className="font-bold text-xs uppercase tracking-wider text-gray-800 dark:text-white">{t('chartMandiCongestionTitle')}</h3>
+          <p className="text-4xs text-gray-400 dark:text-gray-500">{t('chartMandiCongestionSubtitle')}</p>
           <div className="h-64">
             <ResponsiveContainer width="100%" height="100%">
               <BarChart data={centreStats} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
-                <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f1f5f9" />
-                <XAxis dataKey="name" tick={{ fontSize: 10 }} />
-                <YAxis tick={{ fontSize: 10 }} />
-                <Tooltip contentStyle={{ fontSize: 10, borderRadius: '8px' }} />
+                <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#e2e8f0" opacity={0.3} />
+                <XAxis dataKey="name" tick={{ fontSize: 10, fill: '#94a3b8' }} />
+                <YAxis tick={{ fontSize: 10, fill: '#94a3b8' }} />
+                <Tooltip contentStyle={{ fontSize: 10, borderRadius: '8px', backgroundColor: '#1e293b', border: 'none', color: '#f8fafc' }} />
                 <Legend wrapperStyle={{ fontSize: 10 }} />
                 <Bar dataKey="queueCount" name={t('activeQueuesKpi')} fill="#3b82f6" radius={[4, 4, 0, 0]} />
                 <Bar dataKey="bookingsCount" name={t('todayBookingsKpi')} fill="#10b981" radius={[4, 4, 0, 0]} />
@@ -855,8 +855,8 @@ const AdminDashboard = () => {
         </div>
 
         {/* Bottom Right: Payment status summary breakdown */}
-        <div className="lg:col-span-1 bg-white rounded-2xl p-5 sm:p-6 border border-gray-200/80 shadow-xs space-y-3">
-          <h3 className="font-bold text-xs uppercase tracking-wider text-gray-800">{t('chartPayoutDistTitle')}</h3>
+        <div className="lg:col-span-1 bg-white dark:bg-gray-900 rounded-2xl p-5 sm:p-6 border border-gray-200/80 dark:border-gray-800 shadow-xs space-y-3">
+          <h3 className="font-bold text-xs uppercase tracking-wider text-gray-800 dark:text-white">{t('chartPayoutDistTitle')}</h3>
           <div className="space-y-3 pt-2">
             {paymentDistribution.map((item) => (
               <div key={item.status} className="flex justify-between items-center text-xs">
@@ -865,11 +865,11 @@ const AdminDashboard = () => {
                     item.status === 'COMPLETED' ? 'bg-emerald-500' :
                     item.status === 'PROCESSING' ? 'bg-blue-500' : 'bg-amber-500'
                   }`}></span>
-                  <span className="font-semibold text-gray-700">{t(item.status)}</span>
+                  <span className="font-semibold text-gray-700 dark:text-gray-300">{t(item.status)}</span>
                 </div>
                 <div className="text-right">
-                  <span className="font-bold text-gray-900 block">₹{item.total.toLocaleString()}</span>
-                  <span className="text-4xs text-gray-400 block">{item.count} transactions</span>
+                  <span className="font-bold text-gray-900 dark:text-white block">₹{item.total.toLocaleString()}</span>
+                  <span className="text-4xs text-gray-400 dark:text-gray-500 block">{item.count} transactions</span>
                 </div>
               </div>
             ))}
@@ -880,14 +880,14 @@ const AdminDashboard = () => {
       {/* Add Centre Modal */}
       {showAddCentreModal && (
         <div className="fixed inset-0 z-50 overflow-y-auto bg-black/40 flex items-center justify-center p-4">
-          <div className="bg-white rounded-2xl max-w-md w-full p-5 sm:p-6 text-left shadow-xl border border-gray-100 space-y-4">
-            <div className="flex justify-between items-start border-b border-gray-100 pb-2.5">
-              <h3 className="font-bold text-sm text-gray-800 flex items-center gap-1.5">
-                <Building className="h-4 w-4 text-emerald-600" /> {t('addCentreModalTitle')}
+          <div className="bg-white dark:bg-gray-900 rounded-2xl max-w-md w-full p-5 sm:p-6 text-left shadow-xl border border-gray-100 dark:border-gray-800 space-y-4">
+            <div className="flex justify-between items-start border-b border-gray-100 dark:border-gray-800 pb-2.5">
+              <h3 className="font-bold text-sm text-gray-800 dark:text-white flex items-center gap-1.5">
+                <Building className="h-4 w-4 text-emerald-600 dark:text-emerald-400" /> {t('addCentreModalTitle')}
               </h3>
               <button 
                 onClick={() => setShowAddCentreModal(false)}
-                className="text-gray-400 hover:text-gray-600 cursor-pointer text-sm"
+                className="text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 cursor-pointer text-sm"
               >
                 ✕
               </button>
@@ -895,7 +895,7 @@ const AdminDashboard = () => {
 
             <form onSubmit={handleAddCentre} className="space-y-3.5">
               <div>
-                <label className="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1">
+                <label className="block text-xs font-bold text-gray-700 dark:text-gray-300 uppercase tracking-wider mb-1">
                   {t('centreNameLabel')}
                 </label>
                 <input
@@ -905,12 +905,12 @@ const AdminDashboard = () => {
                   value={centreForm.name}
                   onChange={handleInputChange}
                   placeholder="e.g. Kalyan Grain Mandi"
-                  className="w-full px-3 py-2 bg-gray-50 border border-gray-300 rounded-lg text-sm text-gray-800 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:bg-white"
+                  className="w-full px-3 py-2 bg-gray-50 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg text-sm text-gray-800 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:bg-white dark:focus:bg-gray-800"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1">
+                <label className="block text-xs font-bold text-gray-700 dark:text-gray-300 uppercase tracking-wider mb-1">
                   {t('locationLabel')}
                 </label>
                 <input
@@ -920,13 +920,13 @@ const AdminDashboard = () => {
                   value={centreForm.location}
                   onChange={handleInputChange}
                   placeholder="Street and landmark details"
-                  className="w-full px-3 py-2 bg-gray-50 border border-gray-300 rounded-lg text-sm text-gray-800 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:bg-white"
+                  className="w-full px-3 py-2 bg-gray-50 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg text-sm text-gray-800 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:bg-white dark:focus:bg-gray-800"
                 />
               </div>
 
               <div className="grid grid-cols-2 gap-3">
                 <div>
-                  <label className="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1">
+                  <label className="block text-xs font-bold text-gray-700 dark:text-gray-300 uppercase tracking-wider mb-1">
                     {t('district')}
                   </label>
                   <input
@@ -936,12 +936,12 @@ const AdminDashboard = () => {
                     value={centreForm.district}
                     onChange={handleInputChange}
                     placeholder="e.g. Pune"
-                    className="w-full px-3 py-2 bg-gray-50 border border-gray-300 rounded-lg text-sm text-gray-800 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:bg-white"
+                    className="w-full px-3 py-2 bg-gray-50 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg text-sm text-gray-800 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:bg-white dark:focus:bg-gray-800"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1">
+                  <label className="block text-xs font-bold text-gray-700 dark:text-gray-300 uppercase tracking-wider mb-1">
                     {t('contactNumberLabel')}
                   </label>
                   <input
@@ -951,14 +951,14 @@ const AdminDashboard = () => {
                     value={centreForm.contactNumber}
                     onChange={handleInputChange}
                     placeholder="10-digit phone"
-                    className="w-full px-3 py-2 bg-gray-50 border border-gray-300 rounded-lg text-sm text-gray-800 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:bg-white"
+                    className="w-full px-3 py-2 bg-gray-50 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg text-sm text-gray-800 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:bg-white dark:focus:bg-gray-800"
                   />
                 </div>
               </div>
 
               <div className="grid grid-cols-2 gap-3">
                 <div>
-                  <label className="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1">
+                  <label className="block text-xs font-bold text-gray-700 dark:text-gray-300 uppercase tracking-wider mb-1">
                     {t('capacityLabel')}
                   </label>
                   <input
@@ -967,12 +967,12 @@ const AdminDashboard = () => {
                     name="capacity"
                     value={centreForm.capacity}
                     onChange={handleInputChange}
-                    className="w-full px-3 py-2 bg-gray-50 border border-gray-300 rounded-lg text-sm text-gray-800 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:bg-white"
+                    className="w-full px-3 py-2 bg-gray-50 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg text-sm text-gray-800 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:bg-white dark:focus:bg-gray-800"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1">
+                  <label className="block text-xs font-bold text-gray-700 dark:text-gray-300 uppercase tracking-wider mb-1">
                     {t('countersLabel')}
                   </label>
                   <input
@@ -981,16 +981,16 @@ const AdminDashboard = () => {
                     name="activeCounters"
                     value={centreForm.activeCounters}
                     onChange={handleInputChange}
-                    className="w-full px-3 py-2 bg-gray-50 border border-gray-300 rounded-lg text-sm text-gray-800 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:bg-white"
+                    className="w-full px-3 py-2 bg-gray-50 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg text-sm text-gray-800 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:bg-white dark:focus:bg-gray-800"
                   />
                 </div>
               </div>
 
-              <div className="flex justify-end space-x-2.5 pt-2 border-t border-gray-100">
+              <div className="flex justify-end space-x-2.5 pt-2 border-t border-gray-100 dark:border-gray-800">
                 <button
                   type="button"
                   onClick={() => setShowAddCentreModal(false)}
-                  className="px-3.5 py-2 border border-gray-300 rounded-lg text-xs font-medium text-gray-700 hover:bg-gray-50 cursor-pointer"
+                  className="px-3.5 py-2 border border-gray-300 dark:border-gray-700 rounded-lg text-xs font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 cursor-pointer"
                 >
                   {t('cancel')}
                 </button>
@@ -1005,15 +1005,6 @@ const AdminDashboard = () => {
             </form>
           </div>
         </div>
-      )}
-
-      {/* Centre Bottleneck Details Modal */}
-      {selectedBottleneckCentre && (
-        <BottleneckDetailModal
-          isOpen={Boolean(selectedBottleneckCentre)}
-          onClose={() => setSelectedBottleneckCentre(null)}
-          centreData={selectedBottleneckCentre}
-        />
       )}
     </div>
   );

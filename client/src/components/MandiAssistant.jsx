@@ -173,10 +173,10 @@ const MandiAssistant = () => {
 
       {/* Expanded chat window */}
       {isOpen && (
-        <div className="w-80 sm:w-96 h-[28rem] bg-white rounded-2xl border border-gray-200/80 shadow-xl flex flex-col overflow-hidden text-left">
+        <div className="w-80 sm:w-96 h-[28rem] bg-white dark:bg-gray-900 rounded-2xl border border-gray-200/80 dark:border-gray-800 shadow-xl flex flex-col overflow-hidden text-left">
           
           {/* Header */}
-          <div className="bg-emerald-700 text-white px-4 py-3 flex justify-between items-center shrink-0">
+          <div className="bg-emerald-700 dark:bg-emerald-800 text-white px-4 py-3 flex justify-between items-center shrink-0">
             <div className="flex items-center space-x-2">
               <div className="bg-white/20 p-1.5 rounded-lg">
                 <Bot className="h-4 w-4" />
@@ -196,7 +196,7 @@ const MandiAssistant = () => {
           </div>
 
           {/* Messages screen */}
-          <div className="flex-1 p-3.5 overflow-y-auto space-y-2.5 bg-gray-50/50">
+          <div className="flex-1 p-3.5 overflow-y-auto space-y-2.5 bg-gray-50/50 dark:bg-gray-950/70">
             {messages.map((m, i) => (
               <div
                 key={i}
@@ -206,7 +206,7 @@ const MandiAssistant = () => {
                   className={`max-w-[80%] p-2.5 rounded-xl text-xs leading-relaxed ${
                     m.sender === 'user'
                       ? 'bg-emerald-600 text-white rounded-tr-none'
-                      : 'bg-white border border-gray-200/80 text-gray-800 rounded-tl-none shadow-2xs'
+                      : 'bg-white dark:bg-gray-800 border border-gray-200/80 dark:border-gray-700 text-gray-800 dark:text-gray-100 rounded-tl-none shadow-2xs'
                   }`}
                 >
                   <p>{m.text}</p>
@@ -218,23 +218,23 @@ const MandiAssistant = () => {
 
           {/* Tap-to-ask suggestions */}
           {messages.length === 1 && (
-            <div className="px-3.5 py-2 bg-gray-50 border-t border-gray-200/80 space-y-1 text-3xs">
-              <span className="font-bold text-gray-500 uppercase tracking-wider block">{t('botTapToAsk')}</span>
+            <div className="px-3.5 py-2 bg-gray-50 dark:bg-gray-900 border-t border-gray-200/80 dark:border-gray-800 space-y-1 text-3xs">
+              <span className="font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider block">{t('botTapToAsk')}</span>
               <button
                 onClick={() => handleSend(t('botQuick1'))}
-                className="w-full text-left px-2.5 py-1.5 bg-white hover:bg-emerald-50 border border-gray-200 text-emerald-800 font-medium rounded-lg transition cursor-pointer"
+                className="w-full text-left px-2.5 py-1.5 bg-white dark:bg-gray-800 hover:bg-emerald-50 dark:hover:bg-emerald-950/50 border border-gray-200 dark:border-gray-700 text-emerald-800 dark:text-emerald-300 font-medium rounded-lg transition cursor-pointer"
               >
                 {t('botQuick1')}
               </button>
               <button
                 onClick={() => handleSend(t('botQuick2'))}
-                className="w-full text-left px-2.5 py-1.5 bg-white hover:bg-emerald-50 border border-gray-200 text-emerald-800 font-medium rounded-lg transition cursor-pointer"
+                className="w-full text-left px-2.5 py-1.5 bg-white dark:bg-gray-800 hover:bg-emerald-50 dark:hover:bg-emerald-950/50 border border-gray-200 dark:border-gray-700 text-emerald-800 dark:text-emerald-300 font-medium rounded-lg transition cursor-pointer"
               >
                 {t('botQuick2')}
               </button>
               <button
                 onClick={() => handleSend(t('botQuick3'))}
-                className="w-full text-left px-2.5 py-1.5 bg-white hover:bg-emerald-50 border border-gray-200 text-emerald-800 font-medium rounded-lg transition cursor-pointer"
+                className="w-full text-left px-2.5 py-1.5 bg-white dark:bg-gray-800 hover:bg-emerald-50 dark:hover:bg-emerald-950/50 border border-gray-200 dark:border-gray-700 text-emerald-800 dark:text-emerald-300 font-medium rounded-lg transition cursor-pointer"
               >
                 {t('botQuick3')}
               </button>
@@ -247,7 +247,7 @@ const MandiAssistant = () => {
               e.preventDefault();
               handleSend(inputValue);
             }}
-            className="p-2.5 bg-white border-t border-gray-200 flex items-center space-x-2 shrink-0"
+            className="p-2.5 bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800 flex items-center space-x-2 shrink-0"
           >
             {/* Mic voice input button */}
             <button
@@ -256,7 +256,7 @@ const MandiAssistant = () => {
               className={`p-2 rounded-lg transition cursor-pointer ${
                 isListening 
                   ? 'bg-red-500 hover:bg-red-600 text-white animate-pulse' 
-                  : 'bg-emerald-50 hover:bg-emerald-100 text-emerald-700'
+                  : 'bg-emerald-50 dark:bg-emerald-950/60 hover:bg-emerald-100 dark:hover:bg-emerald-900 text-emerald-700 dark:text-emerald-300'
               }`}
               title="Voice Input"
             >
@@ -268,7 +268,7 @@ const MandiAssistant = () => {
               value={inputValue}
               onChange={(e) => setInputValue(e.target.value)}
               placeholder={isListening ? t('botListening') : t('botPlaceholder')}
-              className="flex-1 bg-gray-50 border border-gray-300 px-3 py-1.5 rounded-lg text-xs text-gray-800 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:bg-white"
+              className="flex-1 bg-gray-50 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 px-3 py-1.5 rounded-lg text-xs text-gray-800 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:bg-white dark:focus:bg-gray-800 placeholder-gray-400 dark:placeholder-gray-500"
             />
             
             <button
@@ -279,7 +279,7 @@ const MandiAssistant = () => {
             </button>
           </form>
           {speechError && (
-            <div className="bg-red-50 text-red-700 px-3 py-1 text-4xs font-semibold text-center border-t border-red-100">
+            <div className="bg-red-50 dark:bg-red-950/50 text-red-700 dark:text-red-300 px-3 py-1 text-4xs font-semibold text-center border-t border-red-100 dark:border-red-900/60">
               ⚠️ {speechError}
             </div>
           )}

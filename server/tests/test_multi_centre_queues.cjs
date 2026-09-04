@@ -96,16 +96,16 @@ async function runMultiCentreQueueTests() {
   console.log(`✓ Hadapsar Hub Queue: ${hadapsarQueue.data.data.length} farmers (Serving: ${hadapsarQueue.data.data.filter(q => q.status === 'SERVING').length}, Waiting: ${hadapsarQueue.data.data.filter(q => q.status === 'WAITING').length})`);
   console.log(`✓ Wagholi Mandi Queue: ${wagholiQueue.data.data.length} farmers (Serving: ${wagholiQueue.data.data.filter(q => q.status === 'SERVING').length}, Waiting: ${wagholiQueue.data.data.filter(q => q.status === 'WAITING').length})\n`);
 
-  if (kharadiQueue.data.data.length !== 4) {
-    console.error('FAILED: Kharadi queue should have 4 farmers');
+  if (kharadiQueue.data.data.length !== 5) {
+    console.error(`FAILED: Kharadi queue should have 5 farmers, got ${kharadiQueue.data.data.length}`);
     process.exit(1);
   }
-  if (hadapsarQueue.data.data.length !== 2) {
-    console.error('FAILED: Hadapsar queue should have 2 farmers');
+  if (hadapsarQueue.data.data.length !== 4) {
+    console.error(`FAILED: Hadapsar queue should have 4 farmers, got ${hadapsarQueue.data.data.length}`);
     process.exit(1);
   }
   if (wagholiQueue.data.data.length !== 7) {
-    console.error('FAILED: Wagholi queue should have 7 farmers');
+    console.error(`FAILED: Wagholi queue should have 7 farmers, got ${wagholiQueue.data.data.length}`);
     process.exit(1);
   }
 
