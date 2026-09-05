@@ -1006,6 +1006,13 @@ const AdminDashboard = () => {
           </div>
         </div>
       )}
+
+      {/* Bottleneck Details Modal */}
+      <BottleneckDetailModal
+        isOpen={Boolean(selectedBottleneckCentre)}
+        onClose={() => setSelectedBottleneckCentre(null)}
+        centreData={selectedBottleneckCentre}
+      />
     </div>
   );
 };
