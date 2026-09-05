@@ -38,7 +38,7 @@ export const translations = {
     // Roles & User
     farmer: "Farmer",
     operator: "Centre Operator",
-    admin: "Administrator",
+    admin: "Admin",
     role: "User Role",
     welcome: "Welcome",
     village: "Village",
